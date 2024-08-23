@@ -13,13 +13,26 @@ module.exports = class openai{
 
 	static textCompletion ({prompt}) {
     return 	{
-			model:"text-davinci-003",
-			prompt:`${prompt}`,
-			temperature:0,
-			max_tokens: 3500,
-			top_p:1,
-			frequency_penalty: 0.5,
-			presence_penalty: 0
+			model: "gpt-3.5-turbo",
+		  messages: [
+			{
+			  "role": "user",
+			  "content": [
+				{
+				  "type": "text",
+				  "text": '${prompt}'
+				}
+			  ]
+			}
+		  ],
+		  temperature: 1,
+		  max_tokens: 256,
+		  top_p: 1,
+		  frequency_penalty: 0,
+		  presence_penalty: 0,
+		  response_format: {
+			"type": "text"
+		  }
 		}
   }
 }
